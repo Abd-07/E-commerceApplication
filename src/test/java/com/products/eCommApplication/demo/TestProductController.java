@@ -1,7 +1,20 @@
 package com.products.eCommApplication.demo;
 
-import com.products.eCommApplication.demo.controller.ProductController;
+import com.products.eCommApplication.demo.entity.Product;
+import com.products.eCommApplication.demo.entity.ProductService;
+import controller.ProductController;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes={ProductController.class})
 public class TestProductController {
@@ -13,30 +26,41 @@ public class TestProductController {
 
     @Test
     public void testGetProducts() {
+        // given
         List<Product> productList = new ArrayList<>();
-
         when(productService.getProducts()).thenReturn(productList);
 
+        // when
         List<Product> result = productController.getProducts();
 
+        // then
         assertEquals(productList, result);
     }
 
     @Test
     public void testGetProductsWithId() {
+        // given
         long productId = 123;
         Product expectedProduct = new Product(productId, "Test Product", 10.0);
+        when(productService.getProductsWithId((int) anyLong())).thenReturn(expectedProduct);
 
-        when(productService.getProductsWithId(anyLong())).thenReturn(expectedProduct);
+        Product firstProduct = productService.getProductsWithId(1);
+        Product secondProduct = productService.getProductsWithId(2);
+        Product thirdProduct = productService.getProductsWithId(3);
 
-        Product result = productController.getProductsWithId((int) productId);
+        // when
+        Product serviceResult = productService.getProductsWithId(123);
+        Product result = productController.getProductsWithId(123);
 
+//        Product result = productController.getProductsWithId((int) productId);
+
+        // then
         assertEquals(expectedProduct, result);
     }
 
     @Test
     public void testAddProduct() {
-        Product productToAdd = new Product(123, "New Product", 15.0);
+        Product productToAdd = new Product(123L, "New Product", 15.0);
 
         when(productService.addProduct(Mockito.any(Product.class))).thenReturn(productToAdd);
 

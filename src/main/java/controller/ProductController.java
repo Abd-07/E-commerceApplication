@@ -1,8 +1,10 @@
-package com.products.eCommApplication.demo.controller.ProductController;
+package controller;
 
 import com.products.eCommApplication.demo.entity.Product;
 //import com.products.eCommApplication.demo.service.ResponseMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
+@Slf4j
 public class ProductController {
     @Autowired
     com.products.eCommApplication.demo.entity.ProductService ProductService;
 
+    @GetMapping(path="/")
+    @ResponseBody
+    public String getHome() {
+        log.info("[CUSTOM LOG] calling controller.getHome");
+        return "Hello world!";
+    }
+
     @GetMapping(path="/getProducts")
     @ResponseBody
     public List getProducts() {
+        log.info("[CUSTOM LOG] calling controller.getProducts");
         return ProductService.getProducts();
     }
 
@@ -42,12 +53,12 @@ public class ProductController {
     }
 
     @PutMapping(path="updateProduct")
-    public Product updateProduct(@RequestBody Long updatedProduct) {
+    public Product updateProduct(@RequestBody Product updatedProduct) {
         return ProductService.updateProduct(updatedProduct);
     }
 
     @DeleteMapping(path="deleteProduct/{productId}")
-    public ResponseMessage deleteProduct(@PathVariable Long productId) {
+    public String deleteProduct(@PathVariable int productId) {
         return ProductService.deleteProduct(productId);
     }
 
