@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @Service
 public class ProductService {
+    org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("MAIN CLASS");
     // create the dummy existing data first, stored in a hashmap
     public ProductService() {
         ProductMap.put(1, product1);
@@ -23,11 +24,14 @@ public class ProductService {
     Product product3 = new Product(3L,"Calculator", 15);
 
     public List getProducts() {
+        logger.info("[CUSTOM LOG] product map values" + ProductMap.values());
         List<Product> list = new ArrayList<Product>(ProductMap.values());
+        logger.info("[CUSTOM LOG] list values" + list);
         return list;
     }
 
     public Product getProductsWithId(int productId) {
+        Product productMapResult = ProductMap.get(productId);
         return ProductMap.get(productId);
     }
 
@@ -47,9 +51,10 @@ public class ProductService {
         return ProductMap.get(maxId);
     }
 
-    public Product updateProduct(long updatedProduct) {
+    public Product updateProduct(Product updatedProduct) {
         ProductMap.put(Math.toIntExact(updatedProduct.getId()), updatedProduct);
-        return ProductMap.get(updatedProduct.getId());
+//        return ProductMap.get(updatedProduct.getId());
+        return updatedProduct;
     }
 
     public String deleteProduct(int productId) {
