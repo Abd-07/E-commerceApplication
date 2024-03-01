@@ -26,14 +26,15 @@ public class ProductController {
     @GetMapping(path="/")
     @ResponseBody
     public String getHome() {
-        log.info("[CUSTOM LOG] calling controller.getHome");
-        return "Hello world!";
+//        log.info("[CUSTOM LOG] calling controller.getHome");
+        return "[CUSTOM LOG] calling controller.getHome";
     }
 
     @GetMapping(path="/getProducts")
     @ResponseBody
     public List getProducts() {
-        log.info("[CUSTOM LOG] calling controller.getProducts");
+//        log.info("[CUSTOM LOG] calling controller.getProducts");
+        System.out.println("[CUSTOM LOG] calling controller.getProducts");
         return ProductService.getProducts();
     }
 
