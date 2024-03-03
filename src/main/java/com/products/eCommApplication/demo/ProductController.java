@@ -1,4 +1,4 @@
-package controller;
+package com.products.eCommApplication.demo;
 
 import com.products.eCommApplication.demo.entity.Product;
 //import com.products.eCommApplication.demo.service.ResponseMessage;
@@ -40,6 +40,7 @@ public class ProductController {
 
     @GetMapping(path="/getProducts/{productId}")
     public Product getProductsWithId(@PathVariable int productId) {
+        log.info("getProductsId called");
         return ProductService.getProductsWithId(productId);
     }
 

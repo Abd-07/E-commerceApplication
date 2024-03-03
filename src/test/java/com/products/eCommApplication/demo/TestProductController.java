@@ -2,7 +2,6 @@ package com.products.eCommApplication.demo;
 
 import com.products.eCommApplication.demo.entity.Product;
 import com.products.eCommApplication.demo.entity.ProductService;
-import controller.ProductController;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

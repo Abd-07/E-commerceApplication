@@ -1,6 +1,7 @@
 package com.products.eCommApplication.demo.entity;
 import com.products.eCommApplication.demo.entity.Product;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Service
 public class ProductService {
     org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("MAIN CLASS");
@@ -32,6 +34,7 @@ public class ProductService {
 
     public Product getProductsWithId(int productId) {
         Product productMapResult = ProductMap.get(productId);
+        log.info("LOG: productMapResult",productMapResult);
         return ProductMap.get(productId);
     }
 
