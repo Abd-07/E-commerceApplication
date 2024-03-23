@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes={ProductController.class})
@@ -41,7 +42,7 @@ public class TestProductController {
         // given
         long productId = 123;
         Product expectedProduct = new Product(productId, "Test Product", 10.0);
-        when(productService.getProductsWithId((int) anyLong())).thenReturn(expectedProduct);
+        when(productService.getProductsWithId(123)).thenReturn(expectedProduct);
 
         Product firstProduct = productService.getProductsWithId(1);
         Product secondProduct = productService.getProductsWithId(2);
@@ -50,8 +51,6 @@ public class TestProductController {
         // when
         Product serviceResult = productService.getProductsWithId(123);
         Product result = productController.getProductsWithId(123);
-
-//        Product result = productController.getProductsWithId((int) productId);
 
         // then
         assertEquals(expectedProduct, result);
