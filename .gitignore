@@ -16,8 +16,8 @@ HELP.md
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-.build/reports/
-.build/test-results/
+build/reports/
+build/test-results/
 
 ### IntelliJ IDEA ###
 .idea
