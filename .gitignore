@@ -4,6 +4,10 @@ HELP.md
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Ignored build except the test file that I modified ###
+build/
+!build/classes/java/test/com/products/eCommApplication/demo/TestProductController.class
+
 ### STS ###
 .DS_Store
 .apt_generated
