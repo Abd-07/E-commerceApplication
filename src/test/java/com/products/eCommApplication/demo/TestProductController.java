@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +42,7 @@ public class TestProductController {
         // given
         long productId = 123;
         Product expectedProduct = new Product(productId, "Test Product", 10.0);
-        when(productService.getProductsWithId((int) anyLong())).thenReturn(expectedProduct);
+        when(productService.getProductsWithId(anyInt())).thenReturn(expectedProduct);
 
         Product firstProduct = productService.getProductsWithId(1);
         Product secondProduct = productService.getProductsWithId(2);
